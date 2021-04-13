@@ -10,6 +10,7 @@ import EditIcon from "@material-ui/icons/Edit"
 import {makeStyles} from "@material-ui/core/styles";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import BookmarkStar from "./BookmarkStar";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,8 +34,8 @@ export default function HarvestTable() {
             }
         })
     },[])
-    const columns =["Farmer Name","Officer Name","Address","Contact No","Vegetable Type","Vegetable Grade","Plant Date","Harvest Date","Amount","Province","Edit"] ;
-    const keys = ["farmer_name","officer_name","address","contact_no","vegetable_type","vegetable_grade","plant_date","harvest_date","amount","province","_id"]
+    const columns =["Farmer Name","Officer Name","Address","Contact No","Vegetable Type","Vegetable Grade","Plant Date","Harvest Date","Amount","Province","Edit","Select"] ;
+    const keys = ["farmer_name","officer_name","address","contact_no","vegetable_type","vegetable_grade","plant_date","harvest_date","amount","province","_id","bookmark"]
 
     const handleClose = ()=>{
         setBackdrop(false)
@@ -69,12 +70,16 @@ export default function HarvestTable() {
                 title={"Harvests"}
                 data={harvests.map((obj,i)=>{
                     return keys.map((key,j)=>{
-                        if(key !== "_id"){
+                        if(key !== "_id" && key !=="bookmark"){
                             return obj[key]
-                        }else{
+                        }else if(key === "_id"){
                             return (<Link to={"/harvest/edit/"+obj[key]}>
                                 <EditIcon/>
                             </Link>)
+                        }else{
+                            return (
+                                <BookmarkStar harvest={obj}/>
+                            )
                         }
                     })
                 })}
