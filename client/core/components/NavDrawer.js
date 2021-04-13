@@ -15,6 +15,8 @@ import BarChartIcon from "@material-ui/icons/BarChart"
 import FilterVintageIcon from '@material-ui/icons/FilterVintage'
 import TimelineIcon from '@material-ui/icons/Timeline';
 import PublicIcon from '@material-ui/icons/Public';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import auth from "../../auth/auth-helper";
 const useStyles  = makeStyles((theme)=>({
     drawerDiv: {
         backgroundColor:theme.palette.primary.light
@@ -93,6 +95,34 @@ const NavDrawer = withRouter(({history,drawer_open,toggleDrawer})=>{
                             </ListItemText>
                         </ListItem>
                     </Link>
+                    {
+                        (auth.isAuthenticated() && auth.isAuthenticated().user.role !== "Admin" || !(auth.isAuthenticated()))&&(
+                            <Link to={"/feedback"}>
+                                <ListItem button>
+                                    <ListItemIcon style={isActive(history,"/feedback")} >
+                                        <FeedbackIcon/>
+                                    </ListItemIcon>
+                                    <ListItemText style={isActive(history,"/feedback")}>
+                                        Feedback
+                                    </ListItemText>
+                                </ListItem>
+                            </Link>
+                        )
+                    }
+                    {
+                        auth.isAuthenticated() && auth.isAuthenticated().user.role === "Admin" && (
+                            <Link to={"/feedback/view"}>
+                                <ListItem button>
+                                    <ListItemIcon style={isActive(history,"/feedback/view")} >
+                                        <FeedbackIcon/>
+                                    </ListItemIcon>
+                                    <ListItemText style={isActive(history,"/feedback/view")}>
+                                        View Feedbacks
+                                    </ListItemText>
+                                </ListItem>
+                            </Link>
+                        )
+                    }
                 </List>
             </div>
         </Drawer>
