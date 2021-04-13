@@ -11,6 +11,7 @@ import authRoutes from './routes/auth.routes'
 import demandRoutes from './routes/demand.routes'
 import harvestRoutes from './routes/harvest.routes'
 import newsRoutes from './routes/news.routes'
+import feedbackRoutes from "./routes/feedback.routes"
 // modules for server side rendering
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
@@ -48,6 +49,7 @@ app.use('/', authRoutes)
 app.use('/',demandRoutes)
 app.use("/",harvestRoutes)
 app.use("/",newsRoutes)
+app.use("/",feedbackRoutes)
 
 app.get('*', (req, res) => {
   const sheets = new ServerStyleSheets()

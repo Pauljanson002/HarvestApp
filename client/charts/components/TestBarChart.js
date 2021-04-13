@@ -9,7 +9,7 @@ export default function TestBarChart({data,province}) {
             <div className={"content"}>
                <h1>{province}</h1>
             </div>
-            <BarChart width={600} height={400} data={data}>
+            <BarChart width={1200} height={400} data={data}>
                 <YAxis />
                 <XAxis dataKey={"vegetable_type"}/>
                 <Bar dataKey="supply" barSize={30} fill="#8884d8"

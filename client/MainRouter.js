@@ -20,6 +20,8 @@ import ViewChartsPage from "./charts/ViewChartsPage";
 import ViewNewsPage from "./news/ViewNewsPage";
 import AddNewsPage from "./news/AddNewsPage";
 import EditNewsPage from "./news/EditNewsPage";
+import SendFeedBackPage from "./feedback/SendFeedBackPage";
+import ViewFeedBacksPage from "./feedback/ViewFeedBacksPage";
 const MainRouter = () => {
     return (<div>
       <CssBaseline/>
@@ -41,7 +43,9 @@ const MainRouter = () => {
         <PrivateRoute exact path={"/news"} role={"officer"} component={ViewNewsPage} />
         <PrivateRoute exact path={"/news/add"} role={"Admin"} component={AddNewsPage}/>
         <PrivateRoute exact path={"/news/edit/:newsID"} role={"Admin"} component={EditNewsPage}/>
-        <Route path="/user/:userId" component={Profile}/>
+        <Route exact path={"/feedback"} component={SendFeedBackPage}/>
+        <Route exact  path="/user/:userId" component={Profile}/>
+        <PrivateRoute exact path={"/feedback/view"}  role={"Admin"} component={ViewFeedBacksPage}/>
       </Switch>
     </div>)
 
