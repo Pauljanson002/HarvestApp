@@ -22,6 +22,7 @@ import AddNewsPage from "./news/AddNewsPage";
 import EditNewsPage from "./news/EditNewsPage";
 import SendFeedBackPage from "./feedback/SendFeedBackPage";
 import ViewFeedBacksPage from "./feedback/ViewFeedBacksPage";
+import ViewBookMarksPage from "./bookmarks/ViewBookMarksPage";
 const MainRouter = () => {
     return (<div>
       <CssBaseline/>
@@ -39,10 +40,11 @@ const MainRouter = () => {
         <PrivateRoute exact path={"/harvest"} role={"Any"} component={ViewHarvestPage}/>
         <PrivateRoute exact path={"/harvest/add"} role={"officer"} component={AddHarvestPage}/>
         <PrivateRoute exact path={"/harvest/edit/:harvestID"} role={"officer"} component={EditHarvestPage}/>
-        <PrivateRoute exact path={"/charts"} role={"Any"} component={ViewChartsPage}/>
+        <PrivateRoute exact path={"/charts"} role={"officer"} component={ViewChartsPage}/>
         <PrivateRoute exact path={"/news"} role={"officer"} component={ViewNewsPage} />
         <PrivateRoute exact path={"/news/add"} role={"Admin"} component={AddNewsPage}/>
         <PrivateRoute exact path={"/news/edit/:newsID"} role={"Admin"} component={EditNewsPage}/>
+        <PrivateRoute exact path={"/bookmarks/"} role={"Any"} component={ViewBookMarksPage}/>
         <Route exact path={"/feedback"} component={SendFeedBackPage}/>
         <Route exact  path="/user/:userId" component={Profile}/>
         <PrivateRoute exact path={"/feedback/view"}  role={"Admin"} component={ViewFeedBacksPage}/>

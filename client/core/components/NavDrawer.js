@@ -16,7 +16,10 @@ import FilterVintageIcon from '@material-ui/icons/FilterVintage'
 import TimelineIcon from '@material-ui/icons/Timeline';
 import PublicIcon from '@material-ui/icons/Public';
 import FeedbackIcon from '@material-ui/icons/Feedback';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
 import auth from "../../auth/auth-helper";
+import Badge from "@material-ui/core/Badge";
+import bookmark from "../../datastores/bookmark-ds";
 const useStyles  = makeStyles((theme)=>({
     drawerDiv: {
         backgroundColor:theme.palette.primary.light
@@ -95,6 +98,23 @@ const NavDrawer = withRouter(({history,drawer_open,toggleDrawer})=>{
                             </ListItemText>
                         </ListItem>
                     </Link>
+                    {
+                        auth.isAuthenticated() &&(
+                            <Link to={"/bookmarks"}>
+                                <ListItem button>
+                                    <ListItemIcon style={isActive(history,"/bookmarks")} >
+                                        <Badge badgeContent={bookmark.itemTotal()} color={"primary"}>
+                                            <BookmarkIcon/>
+                                        </Badge>
+                                    </ListItemIcon>
+                                    <ListItemText style={isActive(history,"/bookmarks")}>
+                                        Bookmarks
+                                    </ListItemText>
+                                </ListItem>
+                            </Link>
+                        )
+                    }
+
                     {
                         (auth.isAuthenticated() && auth.isAuthenticated().user.role !== "Admin" || !(auth.isAuthenticated()))&&(
                             <Link to={"/feedback"}>
