@@ -5,8 +5,20 @@ import {Link, Redirect} from "react-router-dom";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {remove} from "../api-news";
 import auth from "../../auth/auth-helper";
+import {makeStyles} from "@material-ui/core/styles";
+import deepPurple from "@material-ui/core/colors/deepPurple";
+
+const useStyles = makeStyles((theme)=>({
+    large:{
+        width:theme.spacing(11),
+        height:theme.spacing(11),
+        color: theme.palette.getContrastText(deepPurple[500]),
+        backgroundColor: deepPurple[500],
+    }
+}))
 export default function NewsCard({title,created,content,id}) {
     const [redirect,setRedirect] = useState(false)
+    const classes = useStyles()
     const deleteNews = (event)=>{
         remove({newsID:id},{t:auth.isAuthenticated().token}).then((data)=>{
             setRedirect(true)
@@ -23,13 +35,13 @@ export default function NewsCard({title,created,content,id}) {
                 <div className="card-content">
                     <div className="media">
                         <div className="media-left">
-                            <figure className="image is-48x48">
-                                <Avatar>
+                            <figure className="image is-48x48 ml-0">
+                                <Avatar className={classes.large}>
                                     A
                                 </Avatar>
                             </figure>
                         </div>
-                        <div className="media-content">
+                        <div className="media-content ml-2">
                             <p className="title is-4 no-padding">{title}</p>
                             <p>
                                 <span className="title is-6">

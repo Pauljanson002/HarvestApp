@@ -9,3 +9,15 @@ mongoose.connect("mongodb+srv://root:root00@cluster0.mq5hg.mongodb.net/harvestAp
     console.log(err)
 })
 
+const a = {
+    heading:"Question",
+    content:"fadfafadfasfda",
+    askedBy:"User",
+    comments:[
+        {
+            user:"dfadfaf",
+            comment:"dadfad",
+            timestamp:"",
+        }
+    ]
+}
