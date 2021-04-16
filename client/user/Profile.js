@@ -16,7 +16,7 @@ import DeleteUser from './DeleteUser'
 import auth from './../auth/auth-helper'
 import {read} from './api-user.js'
 import {Redirect, Link} from 'react-router-dom'
-
+import EmailIcon from '@material-ui/icons/Email';
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     maxWidth: 600,
@@ -71,7 +71,9 @@ export default function Profile({ match }) {
                 <Person/>
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={user.name} secondary={user.email}/> {
+            <ListItemText primary={user.name} secondary={user.email} />
+
+            {
              auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id &&
               (<ListItemSecondaryAction>
                 <Link to={"/user/edit/" + user._id}>
@@ -82,11 +84,23 @@ export default function Profile({ match }) {
                 <DeleteUser userId={user._id}/>
               </ListItemSecondaryAction>)
             }
+            {
+              (auth.isAuthenticated().user && auth.isAuthenticated().user._id != user._id)&&(
+                  <Link to={"/message/" + user._id}>
+                    <IconButton aria-label="Message" color="primary">
+                      <EmailIcon/>
+                    </IconButton>
+                  </Link>
+              )
+            }
           </ListItem>
           <Divider/>
           <ListItem>
             <ListItemText primary={"Joined: " + (
               new Date(user.created)).toDateString()}/>
+          </ListItem>
+          <ListItem>
+            <ListItemText primary={"Role "} secondary={user.role} />
           </ListItem>
         </List>
       </Paper>

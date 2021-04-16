@@ -73,6 +73,10 @@ export default function AddHarvestPage() {
                                     <option value={"Central"}>Central</option>
                                     <option value={"Uva"}>Uva</option>
                                     <option value={"Southern"}>Southern</option>
+                                    <option value={"Eastern"}>Eastern</option>
+                                    <option value={"Sabragamuwa"}>Sabragamuwa</option>
+                                    <option value={"North Central"}>North Central</option>
+                                    <option value={"North Western"}>North Western</option>
                                 </select>
                             </div>
                         </div>

@@ -14,7 +14,11 @@ const getChartData = async (token)=>{
             "Central":{},
             "Western":{},
             "Uva":{},
-            "Southern":{}
+            "Southern":{},
+            "Eastern":{},
+            "Sabragamuwa":{},
+            "North Central":{},
+            "North Western":{}
         }
         harvest_data.map((obj,i)=>{
             harvest_data_organized[obj._id.province][obj._id.vegetable_type] =  {
@@ -45,8 +49,12 @@ const getChartData = async (token)=>{
             "Northern":[],
             "Central":[],
             "Western":[],
+            "Uva":[],
             "Southern":[],
-            "Uva":[]
+            "Eastern":[],
+            "Sabragamuwa":[],
+            "North Central":[],
+            "North Western":[]
         }
         console.log(harvest_data_organized)
         Object.keys(harvest_data_organized).map((province,i)=>{

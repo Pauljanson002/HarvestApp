@@ -19,7 +19,7 @@ const DemandSchema = new mongoose.Schema({
     },
     province:{
         type:String,
-        enum:["Northern","Western","Eastern","North Central","Central","North Western"],
+        enum:["Northern","Western","Eastern","North Central","Central","North Western","Southern","Uva","Sabragamuwa"],
         required:"Province is required"
     }
 })

@@ -49,7 +49,10 @@ const NavDrawer = withRouter(({history,drawer_open,toggleDrawer})=>{
                                 </ListItemText>
                         </ListItem>
                     </Link>
-                   <Link to={"/users"}>
+
+                    {auth.isAuthenticated()&&(
+                        <>
+                        <Link to={"/users"}>
                       <ListItem button>
                           <ListItemIcon style={isActive(history, "/users")}>
                               <PersonIcon/>
@@ -99,6 +102,8 @@ const NavDrawer = withRouter(({history,drawer_open,toggleDrawer})=>{
                             </ListItemText>
                         </ListItem>
                     </Link>
+                        </>
+                        )}
                     {
                         auth.isAuthenticated() &&(
                             <>

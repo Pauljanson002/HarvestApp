@@ -93,7 +93,7 @@ export default function HarvestTable() {
                 columns={columns}
                 options={options}
             />
-            {(auth.isAuthenticated() && auth.isAuthenticated().user.role === "officer" &&
+            {(auth.isAuthenticated() && (auth.isAuthenticated().user.role === "officer" || auth.isAuthenticated().user.role ==="Admin")&&
                 <Box display={"flex"} flexDirection={"row-reverse"} mr={3} mt={3}>
                     <Tooltip title={"Add Harvest"}>
                         <Fab color="primary" aria-label="add">

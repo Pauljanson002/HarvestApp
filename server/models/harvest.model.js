@@ -56,7 +56,7 @@ const HarvestSchema = new mongoose.Schema({
     province:{
         type:String,
         required:"Province is required",
-        enum: ["Northern","Western","Eastern","North Central","Central","North Western"],
+        enum: ["Northern","Western","Eastern","North Central","Central","North Western","Southern","Uva","Sabragamuwa"],
     },
     division:{
         type:String,

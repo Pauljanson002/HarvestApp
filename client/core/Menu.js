@@ -44,13 +44,15 @@ const Menu = withRouter(({history}) => {
                   <IconButton edge={"start"} className={classes.menuButton} color={"inherit"}>
                       <MenuIcon onClick={toggleDrawer}/>
                   </IconButton>
-                    <Typography variant={"h6"} className={classes.title}> <Link to={"/"} style={{textDecoration:'none',color:'inherit'}} >HARVESTAPP </Link> </Typography>
+
+                          <Typography variant={"h6"} className={classes.title}> <Link to={"/"} style={{textDecoration:'none',color:'inherit'}} >HARVESTAPP </Link> </Typography>
+
                   {
                       !auth.isAuthenticated() && (<span>
-          <Link to="/signup">
-            <Button style={isActive(history, "/signup")}>Sign up
-            </Button>
-          </Link>
+          {/*<Link to="/signup">*/}
+          {/*  <Button style={isActive(history, "/signup")}>Sign up*/}
+          {/*  </Button>*/}
+          {/*</Link>*/}
           <Link to="/signin">
             <Button style={isActive(history, "/signin")}>Sign In
             </Button>
@@ -59,6 +61,9 @@ const Menu = withRouter(({history}) => {
                   }
                   {
                       auth.isAuthenticated() && (<span>
+          <Link to={"/message/"}>
+            <Button style={isActive(history, "/message/")}>Messages</Button>
+          </Link>
           <Link to={"/user/" + auth.isAuthenticated().user._id}>
             <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
           </Link>

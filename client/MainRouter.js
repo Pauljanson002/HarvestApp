@@ -25,6 +25,8 @@ import ViewFeedBacksPage from "./feedback/ViewFeedBacksPage";
 import ViewBookMarksPage from "./bookmarks/ViewBookMarksPage";
 import ViewForumPage from "./forum/ViewForumPage";
 import ShowForumPostPage from "./forum/ShowForumPostPage";
+import SendMessagePage from "./message/SendMessagePage";
+import ViewMessages from "./message/ViewMessages";
 const MainRouter = () => {
     return (<div>
       {/*<CssBaseline/>*/}
@@ -48,6 +50,8 @@ const MainRouter = () => {
         <PrivateRoute exact path={"/news/edit/:newsID"} role={"Admin"} component={EditNewsPage}/>
         <PrivateRoute exact path={"/bookmarks/"} role={"Any"} component={ViewBookMarksPage}/>
         <PrivateRoute exact path={"/forum"} role={"Any"} component={ViewForumPage}/>
+        <PrivateRoute exact path={"/message/"} role={"Any"} component={ViewMessages}/>
+        <PrivateRoute exact path={"/message/:userId"} role={"Any"} component={SendMessagePage}/>
         <Route exact path={"/forum/:postId"} component={ShowForumPostPage}/>
         <Route exact path={"/feedback"} component={SendFeedBackPage}/>
         <Route exact  path="/user/:userId" component={Profile}/>
