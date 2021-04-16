@@ -1,8 +1,6 @@
 import Feedback from "../models/feedback.model"
-import Buyer from "../models/buyer.model";
-import Officer from "../models/officer.model";
 import errorHandler from "../helpers/dbErrorHandler";
-import User from "../models/user.model";
+
 
 const create = async (req, res) => {
     const feedback = new Feedback(req.body)

@@ -110,6 +110,10 @@ export default function AddDemandPage () {
                                         <MenuItem value={"Central"}>Central</MenuItem>
                                         <MenuItem value={"Uva"}>Uva</MenuItem>
                                         <MenuItem value={"Southern"}>Southern</MenuItem>
+                                        <MenuItem value={"Eastern"}>Eastern</MenuItem>
+                                        <MenuItem value={"Sabragamuwa"}>Sabragamuwa</MenuItem>
+                                        <MenuItem value={"North Central"}>North Central</MenuItem>
+                                        <MenuItem value={"North Western"}>North Western</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <br/>

@@ -1,46 +1,45 @@
-import React, {useState} from "react";
+import React, {useState} from 'react'
 import {Link} from "react-router-dom";
+import {create} from "./api-message";
 import auth from "../auth/auth-helper";
-import {create} from "./api-feedback";
-import Typography from "@material-ui/core/Typography";
-import Icon from "@material-ui/core/Icon";
-export default function SendFeedBackPage({history}) {
+
+export default function SendMessagePage({match}) {
     const [values,setValues] = useState({
-        name:(auth.isAuthenticated() ? auth.isAuthenticated().user.name:"Guest"),
         subject:"",
-        content:"",
+        message:"",
     })
     const [error,setError] = useState("")
-    const [success,setSuccess] = useState("")
-
+    const [progress,setProgress] = useState(false)
+    const [success,setSuccess]= useState("")
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value })
     }
-    const handleSubmit =(event)=>{
-        setError("")
-        setSuccess("")
+    const handleSubmit = (event)=>{
         event.preventDefault()
-        const feedback = values
-        create(values).then((response)=>{
-           if(response.error){
-                setError(response.error)
+        setError("")
+        setProgress(true)
+        const sendData = {
+            to:match.params.userId,
+            message:values
+        }
+        create(sendData,auth.isAuthenticated().token).then((data)=>{
+           if(data.error){
+               setProgress(false)
+               setError(data.error)
            }else{
-               setSuccess(response.message)
-               setTimeout(()=>{
-                   history.push("/")
-               },1000)
+               setProgress(false)
+               setSuccess(data.message)
            }
-        }).catch((error)=>{
-            console.log(error)
-            setError("Some error occurred ")
+        }).catch((err)=>{
+            console.log(err)
         })
     }
     return(
         <div className={"container"}>
-           <div className={"section content mb-0 mt-5 is-flex is-justify-content-center"}>
-               <h1 className={"is-size-2"} >Give feedback</h1>
-           </div>
-            <div className={"section mt-0"}>
+            <div className={"section content mb-0"}>
+               <h1 className={"is-size-2"} >Send Message </h1>
+            </div>
+            <div className={"section mt-0 pt-0"}>
                 <form className={"form"} onSubmit={handleSubmit}>
                     <div className="field">
                         <label className="label is-size-2">Subject</label>
@@ -49,23 +48,26 @@ export default function SendFeedBackPage({history}) {
                         </div>
                     </div>
                     <div className="field ">
-                        <label className="label is-size-2">Feedback </label>
+                        <label className="label is-size-2">Message </label>
                         <div className="control">
-                           <textarea className="textarea" placeholder="Give your feedback"  rows={"20"} onChange={handleChange("content")}>
+                           <textarea className="textarea" placeholder="Message"  rows={"15"} onChange={handleChange("message")}>
 
                            </textarea>
                         </div>
                     </div>
                     <button type={"submit"} className={"button is-success is-normal ml-5"}>
-                        Send feedback
+                        Send message
                     </button>
-                    <Link to={"/feedback/"}>
+                    <Link to={"/users/"}>
                         <button className={"button is-danger is-normal ml-5"}>
                             Cancel
                         </button>
                     </Link>
                 </form>
-                <div className={"container section"}>
+                <div className={"container block mt-4"}>
+                    {
+                        progress&&( <progress className="progress is-small is-link" max="100">15%</progress>)
+                    }
                     {error &&(<div className="notification is-danger">
                         <button className="delete" onClick={(event)=>{
                             setError("")
@@ -81,6 +83,5 @@ export default function SendFeedBackPage({history}) {
                 </div>
             </div>
         </div>
-
     )
 }

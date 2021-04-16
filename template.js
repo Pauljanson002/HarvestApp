@@ -11,6 +11,7 @@ export default ({markup, css}) => {
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
    
          
 

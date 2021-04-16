@@ -7,7 +7,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop";
 
 
-const provinces = ["Northern","Western","Central","Uva"]
+const provinces = ["Northern","Western","Eastern","North Central","Central","North Western","Southern","Uva","Sabragamuwa"]
 export default function ViewChartsPage() {
     const [data,setData] = useState({})
     const [backdrop,setBackDrop] = useState(false)
