@@ -19,6 +19,7 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import auth from "../../auth/auth-helper";
 import Badge from "@material-ui/core/Badge";
+import ForumIcon from '@material-ui/icons/Forum';
 import bookmark from "../../datastores/bookmark-ds";
 const useStyles  = makeStyles((theme)=>({
     drawerDiv: {
@@ -100,6 +101,7 @@ const NavDrawer = withRouter(({history,drawer_open,toggleDrawer})=>{
                     </Link>
                     {
                         auth.isAuthenticated() &&(
+                            <>
                             <Link to={"/bookmarks"}>
                                 <ListItem button>
                                     <ListItemIcon style={isActive(history,"/bookmarks")} >
@@ -112,6 +114,18 @@ const NavDrawer = withRouter(({history,drawer_open,toggleDrawer})=>{
                                     </ListItemText>
                                 </ListItem>
                             </Link>
+                            <Link to={"/forum"}>
+                                <ListItem button>
+                                    <ListItemIcon style={isActive(history,"/forum")} >
+                                           <ForumIcon/>
+                                    </ListItemIcon>
+                                    <ListItemText style={isActive(history,"/forum")}>
+                                       Forum
+                                    </ListItemText>
+                                </ListItem>
+                            </Link>
+                            </>
+
                         )
                     }
 

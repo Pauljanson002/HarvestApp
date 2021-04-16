@@ -30,7 +30,14 @@ export default function HarvestTable() {
             if(data.error){
                 console.log(data.error)
             }else{
-                setHarvests(data)
+                const newData = data.map((obj,i)=>{
+                    return{
+                        ...obj,
+                        plant_date:obj.plant_date.substring(0,10),
+                        harvest_date:obj.harvest_date.substring(0,10),
+                    }
+                })
+                setHarvests(newData)
             }
         })
     },[])
